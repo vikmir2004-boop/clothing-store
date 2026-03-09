@@ -1,31 +1,65 @@
-/* ===== ОГОНЬ, ЛЕС, СКЕЛЕТЫ ===== */
-/* Плоская стилизация в духе risograph / duo-tone постеров */
-
-* {
+/* ===== ОСНОВНОЙ ФОН САЙТА ===== */
+html, body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    min-height: 100vh;
+    width: 100%;
 }
 
 body {
-    font-family: 'Impact', 'Arial Black', 'Helvetica Bold', sans-serif;
-    /* Основной фон — глубокий чёрный */
-    background-color: #0a0a0a;
-    color: #ff4d4d; /* Кислотный красный для основного текста */
+    /* Фоновое изображение - правильный путь с пробелом */
+    background-image: url('C:/Users/79152/Desktop/clothing/задний фон для сайта/фотка1.jpg');
+    
+    /* Настройки отображения */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    
+    /* Цвет текста по умолчанию */
+    color: #ff4d4d;
+    font-family: 'Arial Black', sans-serif;
     line-height: 1.4;
-    letter-spacing: 0.5px;
-    text-transform: uppercase; /* Всё ЗАГЛАВНЫМИ — для плакатного стиля */
+    text-transform: uppercase;
+    position: relative;
 }
 
+/* Тёмная подложка поверх фона */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: -1;
+}
+
+/* Текстура шума */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noise)" opacity="0.1"/%3E%3C/svg%3E');
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 9998;
+    mix-blend-mode: overlay;
+}
+
+/* ===== ШАПКА САЙТА ===== */
 header {
-    background-color: #000000;
-    border-bottom: 4px solid #ff3300; /* Оранжевая жирная линия */
+    background-color: rgba(0, 0, 0, 0.8);
+    border-bottom: 4px solid #ff4500;
     padding: 30px 20px;
     text-align: center;
     position: relative;
 }
 
-/* Эффект "обугленного" дерева или теней леса */
 header::before {
     content: "🌲🔥🌲";
     position: absolute;
@@ -40,12 +74,16 @@ header::before {
 
 h1 {
     font-size: 4rem;
-    color: #ff3300; /* Яркий оранжевый */
+    color: #ff4500;
     text-shadow: 
-        4px 4px 0 #8b0000, /* Тень как будто краска сместилась при печати */
+        4px 4px 0 #8b0000,
         8px 8px 10px rgba(255, 69, 0, 0.3);
     margin-bottom: 10px;
     word-break: break-word;
+}
+
+nav {
+    margin-top: 20px;
 }
 
 nav a {
@@ -57,7 +95,6 @@ nav a {
     position: relative;
 }
 
-/* Резкие скобки как в рок-постерах */
 nav a::before {
     content: '[';
     margin-right: 5px;
@@ -76,13 +113,16 @@ nav a:hover {
     color: #ffffff;
     background-color: #8b0000;
     padding: 5px 10px;
-    transform: rotate(-1deg); /* Лёгкий наклон — будто наклейка */
+    transform: rotate(-1deg);
 }
 
+/* ===== ОСНОВНОЙ КОНТЕНТ ===== */
 main {
     max-width: 1200px;
     margin: 50px auto;
     padding: 0 20px;
+    position: relative;
+    z-index: 1;
 }
 
 h2 {
@@ -96,11 +136,12 @@ h2 {
     width: auto;
     margin-left: auto;
     margin-right: auto;
-    background-color: #000;
-    box-shadow: 10px 10px 0 #8b0000; /* Жёсткая тень в стиле risograph */
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 10px 10px 0 #8b0000;
     letter-spacing: 5px;
 }
 
+/* ===== КАРТОЧКИ ТОВАРОВ ===== */
 .products {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -109,16 +150,16 @@ h2 {
 }
 
 .product-card {
-    background: #111111; /* Чуть светлее чёрного */
+    background: rgba(17, 17, 17, 0.9);
     border: 3px solid #ff3300;
     padding: 25px 15px 30px 15px;
     text-align: center;
     position: relative;
     transition: all 0.1s ease;
     box-shadow: 8px 8px 0 #5a0000;
+    backdrop-filter: blur(2px);
 }
 
-/* Эффект "прожжёной" бумаги или скелета */
 .product-card::after {
     content: "💀";
     position: absolute;
@@ -131,7 +172,7 @@ h2 {
 }
 
 .product-card:hover {
-    background-color: #1a0000;
+    background-color: rgba(26, 0, 0, 0.95);
     border-color: #ff4500;
     transform: translate(-4px, -4px);
     box-shadow: 12px 12px 0 #ff0000;
@@ -148,7 +189,7 @@ h2 {
 .price {
     font-size: 2.5rem;
     font-weight: bold;
-    color: #ff3300; /* Оранжевый */
+    color: #ff3300;
     background-color: #000;
     padding: 10px 20px;
     display: inline-block;
@@ -158,7 +199,6 @@ h2 {
     box-shadow: 5px 5px 0 #8b0000;
 }
 
-/* Кнопка выглядит как печать/трафарет */
 button {
     background-color: transparent;
     color: #ff3300;
@@ -181,21 +221,20 @@ button:hover {
     transform: scale(0.98);
 }
 
+/* ===== ПОДВАЛ ===== */
 footer {
-    background-color: #050505;
+    background-color: rgba(5, 5, 5, 0.9);
     color: #ff4d4d;
     text-align: center;
     padding: 30px;
     border-top: 4px solid #ff6600;
     margin-top: 50px;
     font-size: 1.2rem;
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(2px);
 }
 
-footer p {
-    opacity: 0.7;
-}
-
-/* Дополнительные "лесные/оккультные" детали */
 footer::before {
     content: "▲ 🔥 ▲";
     display: block;
@@ -205,10 +244,561 @@ footer::before {
     letter-spacing: 10px;
 }
 
-/* Для браузера, если включена светлая тема — ломаем её */
-@media (prefers-color-scheme: light) {
-    body {
-        background-color: #000 !important;
-        color: #ff4d4d !important;
+footer p {
+    opacity: 0.7;
+}
+/* ===== СЕТКА ТОВАРОВ ===== */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin: 50px 0;
+    position: relative;
+}
+
+/* Карточка товара */
+.product-item {
+    background: rgba(10, 10, 10, 0.8);
+    border: 2px solid #ff4500;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+    transform: rotate(var(--rotation, 0deg));
+}
+
+/* Разный наклон для карточек (эффект "разбросанных по лесу") */
+.product-item:nth-child(odd) {
+    --rotation: -1deg;
+}
+
+.product-item:nth-child(even) {
+    --rotation: 1deg;
+}
+
+.product-item:nth-child(3n) {
+    --rotation: 0.5deg;
+}
+
+.product-item:hover {
+    transform: scale(1.02) rotate(0deg);
+    border-color: #ff6600;
+    box-shadow: 0 0 30px rgba(255, 69, 0, 0.5);
+}
+
+/* Контейнер для изображения */
+.product-image {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 15px;
+    border: 2px solid #8b0000;
+    aspect-ratio: 1 / 1; /* Квадратное соотношение */
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Чтобы фото заполняло контейнер */
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.product-item:hover .product-image img {
+    transform: scale(1.1);
+}
+
+/* Эффект пламени поверх фото */
+.flame-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, 
+                rgba(255, 69, 0, 0.2) 0%, 
+                transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+}
+
+.product-item:hover .flame-overlay {
+    opacity: 0.6;
+}
+
+/* Название товара */
+.product-item h3 {
+    font-size: 1.5rem;
+    color: #ff4d4d;
+    margin: 15px 0 10px;
+    text-shadow: 2px 2px 0 #8b0000;
+    letter-spacing: 2px;
+}
+
+/* Цена */
+.product-price {
+    font-size: 2rem;
+    color: #ff6600;
+    font-weight: bold;
+    margin: 10px 0;
+    text-shadow: 3px 3px 0 #5a0000;
+}
+
+/* Кнопка в оккультном стиле */
+.occult-btn {
+    background: transparent;
+    color: #ff4500;
+    border: 2px solid #ff4500;
+    font-size: 1.2rem;
+    padding: 12px 25px;
+    margin: 15px 0 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.occult-btn::before {
+    content: "✹";
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ff6600;
+    transition: left 0.3s ease;
+}
+
+.occult-btn::after {
+    content: "✹";
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ff6600;
+    transition: right 0.3s ease;
+}
+
+.occult-btn:hover {
+    background-color: #ff4500;
+    color: #000;
+    box-shadow: 0 0 20px #ff4500;
+}
+
+.occult-btn:hover::before {
+    left: 5px;
+}
+
+.occult-btn:hover::after {
+    right: 5px;
+}
+
+/* Мистическая секция */
+.ritual-section {
+    text-align: center;
+    margin: 80px 0 40px;
+    padding: 30px;
+    border-top: 2px dashed #ff4500;
+    border-bottom: 2px dashed #ff4500;
+    font-size: 1.8rem;
+    color: #ff6600;
+    text-shadow: 0 0 10px rgba(255, 69, 0, 0.5);
+    position: relative;
+}
+
+.ritual-section::before,
+.ritual-section::after {
+    content: "🔥";
+    position: absolute;
+    font-size: 2rem;
+    color: #ff4500;
+}
+
+.ritual-section::before {
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.ritual-section::after {
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.small-runes {
+    font-size: 2rem;
+    letter-spacing: 15px;
+    margin-top: 20px;
+    opacity: 0.7;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 768px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    .ritual-section {
+        font-size: 1.2rem;
+    }
+}
+/* ===== СЛАЙДЕР ===== */
+.slider-container {
+    position: relative;
+    max-width: 900px;
+    margin: 50px auto;
+    overflow: hidden;
+    border: 3px solid #ff4500;
+    box-shadow: 0 0 30px rgba(255, 69, 0, 0.3);
+    background-color: #000;
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.slide {
+    min-width: 100%;
+    position: relative;
+    aspect-ratio: 16 / 9; /* Соотношение сторон как у кино */
+    overflow: hidden;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Затемнение и эффект пламени */
+.slide-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, 
+                transparent 0%, 
+                rgba(0, 0, 0, 0.7) 100%);
+    pointer-events: none;
+}
+
+.slide::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 70%, 
+                rgba(255, 69, 0, 0.2) 0%, 
+                transparent 70%);
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.slide:hover::after {
+    opacity: 0.6;
+}
+
+/* Контент на слайде */
+.slide-content {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    right: 30px;
+    color: white;
+    text-shadow: 2px 2px 0 #000;
+    z-index: 10;
+}
+
+.slide-content h3 {
+    font-size: 2rem;
+    color: #ff6600;
+    margin-bottom: 10px;
+    border-left: 4px solid #ff4500;
+    padding-left: 15px;
+}
+
+.slide-price {
+    font-size: 2rem;
+    color: #ff4d4d;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* Кнопки слайдера */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: #ff4500;
+    border: 2px solid #ff4500;
+    font-size: 3rem;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+    transition: all 0.3s ease;
+    border-radius: 0;
+}
+
+.slider-btn:hover {
+    background: #ff4500;
+    color: black;
+    box-shadow: 0 0 20px #ff4500;
+}
+
+.prev-btn {
+    left: 20px;
+}
+
+.next-btn {
+    right: 20px;
+}
+
+/* Индикаторы (точечки) */
+.slider-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 20;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid #ff4500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform: rotate(45deg); /* Ромбики вместо точек */
+}
+
+.dot.active {
+    background-color: #ff4500;
+    box-shadow: 0 0 10px #ff4500;
+    transform: rotate(0deg) scale(1.3);
+}
+
+.dot:hover {
+    background-color: #ff6600;
+}
+
+/* Кнопка "Призвать" на слайдере */
+.slide-content .occult-btn {
+    background: transparent;
+    color: #ff4500;
+    border: 2px solid #ff4500;
+    font-size: 1.2rem;
+    padding: 10px 25px;
+    margin-top: 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.slide-content .occult-btn:hover {
+    background-color: #ff4500;
+    color: #000;
+    box-shadow: 0 0 20px #ff4500;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 768px) {
+    .slider-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 2rem;
+    }
+    
+    .slide-content h3 {
+        font-size: 1.2rem;
+    }
+    
+    .slide-price {
+        font-size: 1.5rem;
+    }
+    
+    .slide-content {
+        bottom: 15px;
+        left: 15px;
+        right: 15px;
+    }
+}
+
+/* ===== ВЕРТИКАЛЬНЫЙ КАТАЛОГ (ДЛЯ ФУТБОЛОК) ===== */
+.vertical-catalog {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin: 50px 0;
+    position: relative;
+}
+
+/* Один товар в каталоге */
+.vertical-item {
+    display: flex;
+    gap: 40px;
+    background: rgba(10, 10, 10, 0.8);
+    border: 2px solid #ff4500;
+    padding: 30px;
+    position: relative;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 20px rgba(255, 69, 0, 0.2);
+}
+
+.vertical-item:hover {
+    border-color: #ff6600;
+    box-shadow: 0 0 40px rgba(255, 69, 0, 0.4);
+    transform: translateX(10px); /* Сдвиг вправо при наведении */
+}
+
+/* Левая часть с фото */
+.vertical-image {
+    flex: 0 0 300px; /* Фиксированная ширина */
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #8b0000;
+    aspect-ratio: 1 / 1;
+}
+
+.vertical-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.vertical-item:hover .vertical-image img {
+    transform: scale(1.05);
+}
+
+/* Правая часть с информацией */
+.vertical-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+.vertical-info h3 {
+    font-size: 2.5rem;
+    color: #ff6600;
+    margin-bottom: 15px;
+    text-shadow: 3px 3px 0 #8b0000;
+    border-left: 5px solid #ff4500;
+    padding-left: 20px;
+}
+
+.vertical-description {
+    font-size: 1.2rem;
+    color: #ccc;
+    margin-bottom: 20px;
+    text-transform: none;
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 0.5px;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.vertical-price {
+    font-size: 2.5rem;
+    color: #ff4d4d;
+    font-weight: bold;
+    margin: 15px 0 20px;
+    text-shadow: 3px 3px 0 #5a0000;
+}
+
+/* Кнопка в вертикальном каталоге */
+.vertical-info .occult-btn {
+    width: fit-content;
+    font-size: 1.3rem;
+    padding: 15px 35px;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.vertical-info .occult-btn:hover {
+    background: #ff4500;
+}
+
+/* Активная ссылка в меню */
+nav a.active {
+    color: #ff6600;
+    text-shadow: 0 0 10px #ff4500;
+    border-bottom: 2px solid #ff4500;
+}
+
+nav a.active::before,
+nav a.active::after {
+    color: #ff6600;
+    font-weight: bold;
+}
+
+/* Описание категории */
+.category-description {
+    text-align: center;
+    font-size: 1.3rem;
+    color: #ff4d4d;
+    margin: -20px 0 40px;
+    text-transform: none;
+    font-style: italic;
+    opacity: 0.8;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 768px) {
+    .vertical-item {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+    
+    .vertical-image {
+        flex: 0 0 auto;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    .vertical-info h3 {
+        font-size: 1.8rem;
+    }
+    
+    .vertical-price {
+        font-size: 2rem;
+    }
+    
+    .vertical-info .occult-btn {
+        width: 100%;
     }
 }

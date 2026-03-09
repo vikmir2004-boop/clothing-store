@@ -1,0 +1,214 @@
+/* ===== ОГОНЬ, ЛЕС, СКЕЛЕТЫ ===== */
+/* Плоская стилизация в духе risograph / duo-tone постеров */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Impact', 'Arial Black', 'Helvetica Bold', sans-serif;
+    /* Основной фон — глубокий чёрный */
+    background-color: #0a0a0a;
+    color: #ff4d4d; /* Кислотный красный для основного текста */
+    line-height: 1.4;
+    letter-spacing: 0.5px;
+    text-transform: uppercase; /* Всё ЗАГЛАВНЫМИ — для плакатного стиля */
+}
+
+header {
+    background-color: #000000;
+    border-bottom: 4px solid #ff3300; /* Оранжевая жирная линия */
+    padding: 30px 20px;
+    text-align: center;
+    position: relative;
+}
+
+/* Эффект "обугленного" дерева или теней леса */
+header::before {
+    content: "🌲🔥🌲";
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ff6600;
+    font-size: 24px;
+    opacity: 0.5;
+    letter-spacing: 10px;
+}
+
+h1 {
+    font-size: 4rem;
+    color: #ff3300; /* Яркий оранжевый */
+    text-shadow: 
+        4px 4px 0 #8b0000, /* Тень как будто краска сместилась при печати */
+        8px 8px 10px rgba(255, 69, 0, 0.3);
+    margin-bottom: 10px;
+    word-break: break-word;
+}
+
+nav a {
+    color: #ff4d4d;
+    text-decoration: none;
+    font-size: 1.5rem;
+    margin: 0 20px;
+    display: inline-block;
+    position: relative;
+}
+
+/* Резкие скобки как в рок-постерах */
+nav a::before {
+    content: '[';
+    margin-right: 5px;
+    color: #ff6600;
+    font-weight: bold;
+}
+
+nav a::after {
+    content: ']';
+    margin-left: 5px;
+    color: #ff6600;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #ffffff;
+    background-color: #8b0000;
+    padding: 5px 10px;
+    transform: rotate(-1deg); /* Лёгкий наклон — будто наклейка */
+}
+
+main {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+h2 {
+    font-size: 3rem;
+    color: #ff6600;
+    text-align: center;
+    margin-bottom: 40px;
+    border: 3px solid #ff4d4d;
+    padding: 15px;
+    display: inline-block;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #000;
+    box-shadow: 10px 10px 0 #8b0000; /* Жёсткая тень в стиле risograph */
+    letter-spacing: 5px;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.product-card {
+    background: #111111; /* Чуть светлее чёрного */
+    border: 3px solid #ff3300;
+    padding: 25px 15px 30px 15px;
+    text-align: center;
+    position: relative;
+    transition: all 0.1s ease;
+    box-shadow: 8px 8px 0 #5a0000;
+}
+
+/* Эффект "прожжёной" бумаги или скелета */
+.product-card::after {
+    content: "💀";
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 30px;
+    opacity: 0.2;
+    color: #ff4500;
+    transform: rotate(10deg);
+}
+
+.product-card:hover {
+    background-color: #1a0000;
+    border-color: #ff4500;
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px 0 #ff0000;
+}
+
+.product-card h3 {
+    font-size: 2rem;
+    color: #ff4d4d;
+    margin-bottom: 15px;
+    border-bottom: 2px dashed #ff6600;
+    padding-bottom: 10px;
+}
+
+.price {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ff3300; /* Оранжевый */
+    background-color: #000;
+    padding: 10px 20px;
+    display: inline-block;
+    margin: 20px 0;
+    border: 2px solid white;
+    transform: rotate(-1deg);
+    box-shadow: 5px 5px 0 #8b0000;
+}
+
+/* Кнопка выглядит как печать/трафарет */
+button {
+    background-color: transparent;
+    color: #ff3300;
+    border: 3px solid #ff3300;
+    font-size: 1.8rem;
+    font-weight: bold;
+    padding: 15px 25px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    transition: 0.1s;
+    box-shadow: 0 0 0 #8b0000;
+}
+
+button:hover {
+    background-color: #ff3300;
+    color: #000000;
+    border-color: #ffffff;
+    box-shadow: 5px 5px 0 #ffffff;
+    transform: scale(0.98);
+}
+
+footer {
+    background-color: #050505;
+    color: #ff4d4d;
+    text-align: center;
+    padding: 30px;
+    border-top: 4px solid #ff6600;
+    margin-top: 50px;
+    font-size: 1.2rem;
+}
+
+footer p {
+    opacity: 0.7;
+}
+
+/* Дополнительные "лесные/оккультные" детали */
+footer::before {
+    content: "▲ 🔥 ▲";
+    display: block;
+    font-size: 24px;
+    color: #ff4500;
+    margin-bottom: 15px;
+    letter-spacing: 10px;
+}
+
+/* Для браузера, если включена светлая тема — ломаем её */
+@media (prefers-color-scheme: light) {
+    body {
+        background-color: #000 !important;
+        color: #ff4d4d !important;
+    }
+}
